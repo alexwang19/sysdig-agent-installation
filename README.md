@@ -16,6 +16,21 @@
 
 [Git repo](https://github.com/alexwang19/sysdig-agent-installation)
 
+### Version Requirements
+kubectl +/-1 version between Client and Server
+	Example `kubectl version --short`
+	Output:
+	```
+	Client Version: v1.26.4
+	Kustomize Version: v4.5.7
+	Server Version: v1.26.5
+	```
+helm >=3.10.1
+python3 >= 3.11
+awscli >= 2.11.20 (If running on the AWS Cloud)
+eksctl >=0.141.0 (If running EKS in the AWS Cloud)
+gcloud >=430.0.0 (If running in GCP)
+
 ## Verify Installation
 * Ensure all sysdig pods are 1/1 Running state.
 * Double check the largest image size to make sure a new larger image is not encountered.
