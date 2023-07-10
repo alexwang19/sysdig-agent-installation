@@ -1,36 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dynamic Text Field</title>
+    <title>Dynamic Fields based on Dropdown Selection</title>
 </head>
 <body>
-    <h1>Dynamic Text Field</h1>
+    <h1>Dynamic Fields based on Dropdown Selection</h1>
     <form>
-        <label for="number-of-fields">Number of Fields:</label>
-        <input type="number" id="number-of-fields" name="number-of-fields" min="1" max="10">
-        <button type="button" onclick="createFields()">Create Fields</button>
+        <label for="selection">Select an Option:</label>
+        <select id="selection" name="selection" onchange="showFields()">
+            <option value="">Select an option</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
     </form>
 
+    <div id="field-container"></div>
+
     <script>
-        function createFields() {
-            var numberOfFields = parseInt(document.getElementById("number-of-fields").value);
-
-            // Clear any existing fields
+        function showFields() {
+            var selection = document.getElementById("selection").value;
             var container = document.getElementById("field-container");
-            container.innerHTML = "";
+            container.innerHTML = ""; // Clear any existing fields
 
-            // Create and append new input fields
-            for (var i = 0; i < numberOfFields; i++) {
-                var input = document.createElement("input");
-                input.type = "text";
-                input.name = "field-" + (i + 1);
-                input.placeholder = "Field " + (i + 1);
-                container.appendChild(input);
+            if (selection === "option1") {
+                var input1 = document.createElement("input");
+                input1.type = "text";
+                input1.name = "field1";
+                input1.placeholder = "Field 1";
+                container.appendChild(input1);
+                container.appendChild(document.createElement("br"));
+
+                var input2 = document.createElement("input");
+                input2.type = "text";
+                input2.name = "field2";
+                input2.placeholder = "Field 2";
+                container.appendChild(input2);
+                container.appendChild(document.createElement("br"));
+            } else if (selection === "option2") {
+                var textarea = document.createElement("textarea");
+                textarea.name = "field3";
+                textarea.placeholder = "Field 3";
+                container.appendChild(textarea);
+                container.appendChild(document.createElement("br"));
+            } else if (selection === "option3") {
+                var input3 = document.createElement("input");
+                input3.type = "text";
+                input3.name = "field4";
+                input3.placeholder = "Field 4";
+                container.appendChild(input3);
+                container.appendChild(document.createElement("br"));
+
+                var input4 = document.createElement("input");
+                input4.type = "text";
+                input4.name = "field5";
+                input4.placeholder = "Field 5";
+                container.appendChild(input4);
+                container.appendChild(document.createElement("br"));
+
+                var input5 = document.createElement("input");
+                input5.type = "text";
+                input5.name = "field6";
+                input5.placeholder = "Field 6";
+                container.appendChild(input5);
                 container.appendChild(document.createElement("br"));
             }
         }
     </script>
-
-    <div id="field-container"></div>
 </body>
 </html>
