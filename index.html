@@ -220,13 +220,14 @@
 
     <div id="output"></div>
   </div>
+  <div id="field-container"></div>
 
   <script>
     function handleRegionChange() {
       const regionSelect = document.getElementById('regionSelect');
-      const customRegionInput = document.getElementById('customRegionInput');
+//    const customRegionInput = document.getElementById('customRegionInput');
       var container = document.getElementById("field-container");
-          container.innerHTML = ""; // Clear any existing fields
+//        container.innerHTML = ""; // Clear any existing fields
     
       if (regionSelect.value === 'custom') {
          var input1 = document.createElement("input");
@@ -249,10 +250,10 @@
          input3.placeholder = "SSL Verify Cert - default=true";
          container.appendChild(input3);
          container.appendChild(document.createElement("br"));
-        customRegionInput.style.display = 'block';
-      } else {
-        customRegionInput.style.display = 'none';
-      }
+//      customRegionInput.style.display = 'block';
+//    } else {
+//      customRegionInput.style.display = 'none';
+//    }
     }
     
     function selectRegion(region) {
