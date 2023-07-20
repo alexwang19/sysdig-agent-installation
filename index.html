@@ -225,6 +225,8 @@
     function handleRegionChange() {
       const regionSelect = document.getElementById('regionSelect');
       const customRegionInput = document.getElementById('customRegionInput');
+      var container = document.getElementById("field-container");
+          container.innerHTML = ""; // Clear any existing fields
     
       if (regionSelect.value === 'custom') {
          var input1 = document.createElement("input");
@@ -247,7 +249,7 @@
          input3.placeholder = "SSL Verify Cert - default=true";
          container.appendChild(input3);
          container.appendChild(document.createElement("br"));
-//        customRegionInput.style.display = 'block';
+        customRegionInput.style.display = 'block';
       } else {
         customRegionInput.style.display = 'none';
       }
@@ -264,53 +266,53 @@
 //          container.innerHTML = ""; // Clear any existing fields
 //
 //      if (selection === "option1") {
- //        var input1 = document.createElement("input");
- //        input1.type = "text";
-  //       input1.name = "field1";
-   //      input1.placeholder = "Field 1";
-    //     container.appendChild(input1);
-     //    container.appendChild(document.createElement("br"));
+//        var input1 = document.createElement("input");
+//        input1.type = "text";
+//        input1.name = "field1";
+//        input1.placeholder = "Field 1";
+//        container.appendChild(input1);
+//        container.appendChild(document.createElement("br"));
 //
- //        var input2 = document.createElement("input");
-  //       input2.type = "text";
-   //      input2.name = "field2";
-    //     input2.placeholder = "Field 2";
-     //    container.appendChild(input2);
-      //   container.appendChild(document.createElement("br"));
+//        var input2 = document.createElement("input");
+//        input2.type = "text";
+//        input2.name = "field2";
+//        input2.placeholder = "Field 2";
+//        container.appendChild(input2);
+//        container.appendChild(document.createElement("br"));
 //         } else if (selection === "option2") {
- //               var textarea = document.createElement("textarea");
-  //              textarea.name = "field3";
-   //             textarea.placeholder = "Field 3";
-    //            container.appendChild(textarea);
-     //           container.appendChild(document.createElement("br"));
-      //      } else if (selection === "option3") {
-       //         var input3 = document.createElement("input");
-        //        input3.type = "text";
-         //       input3.name = "field4";
-          //      input3.placeholder = "Field 4";
-//                container.appendChild(input3);
- //               container.appendChild(document.createElement("br"));
+//               var textarea = document.createElement("textarea");
+//               textarea.name = "field3";
+//               textarea.placeholder = "Field 3";
+//               container.appendChild(textarea);
+//               container.appendChild(document.createElement("br"));
+//      } else if (selection === "option3") {
+//         var input3 = document.createElement("input");
+//         input3.type = "text";
+//         input3.name = "field4";
+//         input3.placeholder = "Field 4";
+//               container.appendChild(input3);
+//               container.appendChild(document.createElement("br"));
 //
- //               var input4 = document.createElement("input");
-  //              input4.type = "text";
-   //             input4.name = "field5";
-    //            input4.placeholder = "Field 5";
-     //           container.appendChild(input4);
-      //          container.appendChild(document.createElement("br"));
+//               var input4 = document.createElement("input");
+//               input4.type = "text";
+//               input4.name = "field5";
+//               input4.placeholder = "Field 5";
+//               container.appendChild(input4);
+//               container.appendChild(document.createElement("br"));
 //
- //               var input5 = document.createElement("input");
-  //              input5.type = "text";
-   //             input5.name = "field6";
-    //            input5.placeholder = "Field 6";
-     //           container.appendChild(input5);
-      //          container.appendChild(document.createElement("br"));
-       //     }
-	//  }
+//               var input5 = document.createElement("input");
+//               input5.type = "text";
+//               input5.name = "field6";
+//               input5.placeholder = "Field 6";
+//               container.appendChild(input5);
+//               container.appendChild(document.createElement("br"));
+//     }
+//  }
 
-    function toggleRegionOptions() {
-      const options = document.getElementById('regionOptions');
-      options.style.display = options.style.display === 'none' ? 'block' : 'none';
-    }
+//    function toggleRegionOptions() {
+//      const options = document.getElementById('regionOptions');
+//      options.style.display = options.style.display === 'none' ? 'block' : 'none';
+//    }
 
     // Close dropdown options when clicking outside
     document.addEventListener('click', function (event) {
