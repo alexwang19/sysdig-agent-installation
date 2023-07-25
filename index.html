@@ -109,6 +109,7 @@
     function handleRegionChange() {
       const regionSelect = document.getElementById('regionSelect');
 <<<<<<< HEAD
+<<<<<<< HEAD
 //    const customRegionInput = document.getElementById('customRegionInput');
       var container = document.getElementById("field-container");
 //        container.innerHTML = ""; // Clear any existing fields
@@ -139,6 +140,8 @@
 //      customRegionInput.style.display = 'none';
 //    }
 =======
+=======
+>>>>>>> 62db59e7bac171305fc6be79d1f67ac4f5180358
       // const customRegionInput = document.getElementById('customRegionInput');
 
       const customCollectorUrl = document.getElementById('customCollectorUrl');
@@ -449,7 +452,11 @@ agent:
     const blob = new Blob([yamlContent], { type: 'text/yaml' });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     let outputText = `Install Commands<br><br> helm repo add sysdig https://charts.sysdig.com --force-update<br><br> helm upgrade --force -i sysdig-agent --namespace ${namespaceInput} --create-namespace -f config.yaml sysdig/sysdig-deploy`;
+=======
+    let outputText = `Install Command<br> helm repo add sysdig https://charts.sysdig.com --force-update <br> helm upgrade -i --force sysdig-agent --namespace ${namespaceInput} --create-namespace -f config.yaml sysdig/sysdig-deploy`;
+>>>>>>> 62db59e7bac171305fc6be79d1f67ac4f5180358
 =======
     let outputText = `Install Command<br> helm repo add sysdig https://charts.sysdig.com --force-update <br> helm upgrade -i --force sysdig-agent --namespace ${namespaceInput} --create-namespace -f config.yaml sysdig/sysdig-deploy`;
 >>>>>>> 62db59e7bac171305fc6be79d1f67ac4f5180358
