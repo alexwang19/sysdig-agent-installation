@@ -219,12 +219,17 @@
   <script>
     function handleRegionChange() {
       const regionSelect = document.getElementById('regionSelect');
-      const customRegionInput = document.getElementById('customRegionInput');
+      // const customRegionInput = document.getElementById('customRegionInput');
+
+      const customCollectorUrl = document.getElementById('customCollectorUrl');
+      const customCollectorPort = document.getElementById('customCollectorPort');
     
       if (regionSelect.value === 'custom') {
-        customRegionInput.style.display = 'block';
+        customCollectorUrl.style.display = 'block';
+        customCollectorPort.style.display = 'block';
       } else {
-        customRegionInput.style.display = 'none';
+        customCollectorUrl.style.display = 'none';
+        customCollectorPort.style.display = 'none';
       }
     }
     
