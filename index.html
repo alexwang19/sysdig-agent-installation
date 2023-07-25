@@ -235,7 +235,7 @@
     
     function selectRegion(region) {
       document.getElementById('regionSelect').textContent = region;
-      document.getElementById('regionOptions').style.display = 'none';
+      // document.getElementById('regionOptions').style.display = 'none';
     }
 
     function toggleRegionOptions() {
@@ -244,14 +244,14 @@
     }
 
     // Close dropdown options when clicking outside
-    document.addEventListener('click', function (event) {
-      const options = document.getElementById('regionOptions');
-      const select = document.getElementById('regionSelect');
+    // document.addEventListener('click', function (event) {
+    //   // const options = document.getElementById('regionOptions');
+    //   const select = document.getElementById('regionSelect');
 
-      if (event.target !== select) {
-        options.style.display = 'none';
-      }
-    });
+    //   if (event.target !== select) {
+    //     options.style.display = 'none';
+    //   }
+    // });
     
     function toggleRegistryInputs(checkboxId, inputsContainerId) {
       const checkbox = document.getElementById(checkboxId);
