@@ -2,139 +2,22 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <title>Configuration Options</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    .input-wrapper {
-      display: none;
-      margin-bottom: 10px;
-    }
-
-    .dynamic-input-wrapper {
-      margin-bottom: 10px;
-    }
-
-    #output {
-      margin-top: 20px;
-      background-color: #f2f2f2;
-      padding: 5px;
-    }
-
-    input[type="text"],
-    button {
-      padding: 8px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    .form-container {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .form-section {
-      margin-bottom: 20px;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-
-    .dropdown-select {
-      padding: 8px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      width: 200px; /* Updated width for better visibility */
-      box-sizing: border-box;
-      cursor: pointer;
-      background-color: white;
-    }
-
-    .dropdown-select:focus {
-      outline: none;
-      border-color: #4CAF50;
-    }
-
-    .dropdown-options {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background-color: #f9f9f9;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-top: none;
-      border-radius: 0 0 4px 4px;
-      display: none;
-      z-index: 1;
-    }
-
-    .dropdown-option {
-      padding: 8px;
-      cursor: pointer;
-    }
-
-    .dropdown-option:hover {
-      background-color: #e5e5e5;
-    }
-    
-    select {
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      padding: 8px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      width: 100%;
-      box-sizing: border-box;
-      background-color: #fff;
-    }
-    
-    select:required:invalid {
-      color: gray;
-    }
-    
-    option[value=""] {
-      display: none;
-    }
-  </style>
 </head>
 
 <body>
-  <div class="form-container">
-    <h1>Sysdig Installation</h1>
+ <div class="form-container">
+    <header>
+      <div class="logo">
+        <img src="images/sysdig-logo.png" alt="Your Logo">
+      </div>
+    </header>
+
+    <br>
+    <h1>Welcome to the Sysdig Agent Installation Page!</h1>
+    <h4>Please review installation instructions <a target="_blank" href="https://github.com/dtaracks/sysdig-agent-installation/blob/main/README.md">here</a> and fill in required fields below to generate install commands.</h4>
 
     <div id="namespaceInput" class="form-section">
       <label for="namespaceInput">Kubernetes Namespace (Required)</label>
@@ -155,8 +38,13 @@
       <select id="regionSelect" onchange="handleRegionChange()" required>
         <option value="us2">us2</option>
         <option value="us3">us3</option>
+        <option value="us4">us4</option>
+        <option value="eu1">eu1</option>
+        <option value="au1">au1</option>
         <option value="custom">Custom (For On-Prem)</option>
       </select>
+
+
       <input type="text" id="customCollectorUrl" placeholder="Enter Collector URL" style="display: none;">
       <input type="text" id="customCollectorPort" placeholder="Enter Collector Port" style="display: none;">
     </div>
@@ -215,6 +103,7 @@
 
     <div id="output"></div>
   </div>
+  <div id="field-container"></div>
 
   <script>
     function handleRegionChange() {
@@ -238,10 +127,59 @@
       // document.getElementById('regionOptions').style.display = 'none';
     }
 
-    function toggleRegionOptions() {
-      const options = document.getElementById('regionOptions');
-      options.style.display = options.style.display === 'none' ? 'block' : 'none';
-    }
+//    function showFields() {
+//      var selection = document.getElementById("selection").value;
+//      var container = document.getElementById("field-container");
+//          container.innerHTML = ""; // Clear any existing fields
+//
+//      if (selection === "option1") {
+//        var input1 = document.createElement("input");
+//        input1.type = "text";
+//        input1.name = "field1";
+//        input1.placeholder = "Field 1";
+//        container.appendChild(input1);
+//        container.appendChild(document.createElement("br"));
+//
+//        var input2 = document.createElement("input");
+//        input2.type = "text";
+//        input2.name = "field2";
+//        input2.placeholder = "Field 2";
+//        container.appendChild(input2);
+//        container.appendChild(document.createElement("br"));
+//         } else if (selection === "option2") {
+//               var textarea = document.createElement("textarea");
+//               textarea.name = "field3";
+//               textarea.placeholder = "Field 3";
+//               container.appendChild(textarea);
+//               container.appendChild(document.createElement("br"));
+//      } else if (selection === "option3") {
+//         var input3 = document.createElement("input");
+//         input3.type = "text";
+//         input3.name = "field4";
+//         input3.placeholder = "Field 4";
+//               container.appendChild(input3);
+//               container.appendChild(document.createElement("br"));
+//
+//               var input4 = document.createElement("input");
+//               input4.type = "text";
+//               input4.name = "field5";
+//               input4.placeholder = "Field 5";
+//               container.appendChild(input4);
+//               container.appendChild(document.createElement("br"));
+//
+//               var input5 = document.createElement("input");
+//               input5.type = "text";
+//               input5.name = "field6";
+//               input5.placeholder = "Field 6";
+//               container.appendChild(input5);
+//               container.appendChild(document.createElement("br"));
+//     }
+//  }
+
+//    function toggleRegionOptions() {
+//      const options = document.getElementById('regionOptions');
+//      options.style.display = options.style.display === 'none' ? 'block' : 'none';
+//    }
 
     // Close dropdown options when clicking outside
     // document.addEventListener('click', function (event) {
@@ -478,6 +416,7 @@ agent:
     // Create a Blob with the YAML content
     const blob = new Blob([yamlContent], { type: 'text/yaml' });
 
+=======
     let outputText = `Install Command<br> helm repo add sysdig https://charts.sysdig.com --force-update <br> helm upgrade -i --force sysdig-agent --namespace ${namespaceInput} --create-namespace -f config.yaml sysdig/sysdig-deploy`;
     outputDiv.innerHTML = outputText;
     // Create a temporary <a> element to trigger the download
@@ -487,7 +426,7 @@ agent:
     link.click();
   }
 
-  </script>
+</script>
 </body>
 
 </html>
