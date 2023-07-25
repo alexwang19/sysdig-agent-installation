@@ -108,6 +108,7 @@
   <script>
     function handleRegionChange() {
       const regionSelect = document.getElementById('regionSelect');
+<<<<<<< HEAD
 //    const customRegionInput = document.getElementById('customRegionInput');
       var container = document.getElementById("field-container");
 //        container.innerHTML = ""; // Clear any existing fields
@@ -137,11 +138,25 @@
 //    } else {
 //      customRegionInput.style.display = 'none';
 //    }
+=======
+      // const customRegionInput = document.getElementById('customRegionInput');
+
+      const customCollectorUrl = document.getElementById('customCollectorUrl');
+      const customCollectorPort = document.getElementById('customCollectorPort');
+    
+      if (regionSelect.value === 'custom') {
+        customCollectorUrl.style.display = 'block';
+        customCollectorPort.style.display = 'block';
+      } else {
+        customCollectorUrl.style.display = 'none';
+        customCollectorPort.style.display = 'none';
+      }
+>>>>>>> 62db59e7bac171305fc6be79d1f67ac4f5180358
     }
     
     function selectRegion(region) {
       document.getElementById('regionSelect').textContent = region;
-      document.getElementById('regionOptions').style.display = 'none';
+      // document.getElementById('regionOptions').style.display = 'none';
     }
 
 //    function showFields() {
@@ -199,14 +214,14 @@
 //    }
 
     // Close dropdown options when clicking outside
-    document.addEventListener('click', function (event) {
-      const options = document.getElementById('regionOptions');
-      const select = document.getElementById('regionSelect');
+    // document.addEventListener('click', function (event) {
+    //   // const options = document.getElementById('regionOptions');
+    //   const select = document.getElementById('regionSelect');
 
-      if (event.target !== select) {
-        options.style.display = 'none';
-      }
-    });
+    //   if (event.target !== select) {
+    //     options.style.display = 'none';
+    //   }
+    // });
     
     function toggleRegistryInputs(checkboxId, inputsContainerId) {
       const checkbox = document.getElementById(checkboxId);
@@ -321,9 +336,13 @@
     const outputDiv = document.getElementById('output');
 
     let regionInput;
+    let customCollectorUrl;
+    let customCollectorPort;
     const regionSelect = document.getElementById('regionSelect');
     if (regionSelect.value === 'custom') {
-      regionInput = document.getElementById('customRegionInput').value;
+      regionInput = "custom";
+      customCollectorUrl = document.getElementById('customCollectorUrl').value;
+      customCollectorPort = document.getElementById('customCollectorPort').value;
     } else {
       regionInput = regionSelect.value;
     }
@@ -383,6 +402,11 @@ agent:
   sysdig:
     settings:
       tags: ${clusterTagsInput}`;
+  let agentCollectorContent = `
+  collectorSettings:
+    collectorHost: ${customCollectorUrl}
+    collectorPort: ${customCollectorPort}
+    sslVerifyCertificate: false`;
 
     if (proxyCheckbox.checked) {
       yamlContent += `
@@ -401,6 +425,7 @@ agent:
     };
     nodeAnalyzerYamlContent += nodeAnalyzerRuntimeScannerYamlContent;
     yamlContent += agentYamlContent;
+    yamlContent += agentCollectorContent;
     if (registryCheckbox.checked) {
       let agentImageYamlContent = `
   image:
@@ -423,7 +448,11 @@ agent:
     // Create a Blob with the YAML content
     const blob = new Blob([yamlContent], { type: 'text/yaml' });
 
+<<<<<<< HEAD
     let outputText = `Install Commands<br><br> helm repo add sysdig https://charts.sysdig.com --force-update<br><br> helm upgrade --force -i sysdig-agent --namespace ${namespaceInput} --create-namespace -f config.yaml sysdig/sysdig-deploy`;
+=======
+    let outputText = `Install Command<br> helm repo add sysdig https://charts.sysdig.com --force-update <br> helm upgrade -i --force sysdig-agent --namespace ${namespaceInput} --create-namespace -f config.yaml sysdig/sysdig-deploy`;
+>>>>>>> 62db59e7bac171305fc6be79d1f67ac4f5180358
     outputDiv.innerHTML = outputText;
     // Create a temporary <a> element to trigger the download
     const link = document.createElement('a');
