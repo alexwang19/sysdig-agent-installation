@@ -366,9 +366,13 @@
     const outputDiv = document.getElementById('output');
 
     let regionInput;
+    let customCollectorUrl;
+    let customCollectorPort;
     const regionSelect = document.getElementById('regionSelect');
     if (regionSelect.value === 'custom') {
-      regionInput = document.getElementById('customRegionInput').value;
+      regionInput = "custom";
+      customCollectorUrl = document.getElementById('customCollectorUrl').value;
+      customCollectorPort = document.getElementById('customCollectorPort').value;
     } else {
       regionInput = regionSelect.value;
     }
@@ -428,6 +432,11 @@ agent:
   sysdig:
     settings:
       tags: ${clusterTagsInput}`;
+  let agentCollectorContent = `
+  collectorSettings:
+    collectorHost: ${customCollectorUrl}
+    collectorPort: ${customCollectorPort}
+    sslVerifyCertificate: false`;
 
     if (proxyCheckbox.checked) {
       yamlContent += `
@@ -446,6 +455,7 @@ agent:
     };
     nodeAnalyzerYamlContent += nodeAnalyzerRuntimeScannerYamlContent;
     yamlContent += agentYamlContent;
+    yamlContent += agentCollectorContent;
     if (registryCheckbox.checked) {
       let agentImageYamlContent = `
   image:
