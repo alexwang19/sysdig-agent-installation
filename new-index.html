@@ -7,8 +7,30 @@
 </head>
 
 <body>
-  <div class="form-container">
+  <!-- <div class="form-container">
     <h1>Sysdig Installation</h1>
+
+    <div id="namespaceInput" class="form-section">
+      <label for="namespaceInput">Kubernetes Namespace (Required)</label>
+      <input type="text" id="namespace" placeholder="Enter k8s Namespace" required>
+    </div>
+
+    <div id="accessKeyInput" class="form-section">
+      <label for="accessKeyInput">Sysdig Access Key (Required)</label>
+      <input type="text" id="accessKey" placeholder="Enter Sysdig Access Key" required>
+    </div> -->
+  <div class="form-container">
+    <header>
+      <div class="logo">
+        <img src="images/sysdig-logo.png" alt="Sysdig Logo">
+      </div>
+    </header>
+
+    <br>
+    <h1>Welcome to the Sysdig Agent Installation Page!</h1>
+    <h4>Please review installation instructions <a target="_blank"
+        href="https://github.com/dtaracks/sysdig-agent-installation/blob/main/README.md">here</a> and fill in required
+      fields below to generate install commands.</h4>
 
     <div id="namespaceInput" class="form-section">
       <label for="namespaceInput">Kubernetes Namespace (Required)</label>
@@ -20,7 +42,7 @@
       <input type="text" id="accessKey" placeholder="Enter Sysdig Access Key" required>
     </div>
 
-<!--     <div id="regionInput" class="form-section">
+    <!--     <div id="regionInput" class="form-section">
       <label for="regionInput">Sysdig Region</label>
       <input type="text" id="region" placeholder="Enter Sysdig Region">
     </div> -->
@@ -49,8 +71,7 @@
 
     <div class="form-section">
       <label>
-        <input type="checkbox" id="proxyCheckbox"
-          onchange="toggleProxyInputs('proxyCheckbox', 'proxyInput')">
+        <input type="checkbox" id="proxyCheckbox" onchange="toggleProxyInputs('proxyCheckbox', 'proxyInput')">
         Proxy Required
       </label>
       <div id="proxyInput" class="form-section"></div>
@@ -65,7 +86,7 @@
       <div id="registryInput" class="form-section"></div>
     </div>
 
-<!--     <div class="form-section">
+    <!--     <div class="form-section">
       <label>
         <input type="checkbox" id="registryCheckbox" onchange="toggleInput('registryCheckbox', 'registryInput')">
         Internal Registry Required
@@ -91,6 +112,7 @@
 
     <div id="output"></div>
   </div>
+</div>  
   <script src="scripts/script.js"></script>
 </body>
 
