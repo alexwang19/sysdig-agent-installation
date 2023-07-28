@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Configuration Options</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <!-- <div class="form-container">
+    <h1>Sysdig Installation</h1>
+
+    <div id="namespaceInput" class="form-section">
+      <label for="namespaceInput">Kubernetes Namespace (Required)</label>
+      <input type="text" id="namespace" placeholder="Enter k8s Namespace" required>
+    </div>
+
+    <div id="accessKeyInput" class="form-section">
+      <label for="accessKeyInput">Sysdig Access Key (Required)</label>
+      <input type="text" id="accessKey" placeholder="Enter Sysdig Access Key" required>
+    </div> -->
+  <div class="form-container">
+    <header>
+      <div class="logo">
+        <img src="images/sysdig-logo.png" alt="Sysdig Logo">
+      </div>
+    </header>
+
+    <br>
+    <h1>Welcome to the Sysdig Agent Installation Page!</h1>
+    <h4>Please review installation instructions <a target="_blank"
+        href="https://github.com/dtaracks/sysdig-agent-installation/blob/main/README.md">here</a> and fill in required
+      fields below to generate install commands.</h4>
+
+    <div id="namespaceInput" class="form-section">
+      <label for="namespaceInput">Kubernetes Namespace (Required)</label>
+      <input type="text" id="namespace" placeholder="Enter k8s Namespace" required>
+    </div>
+
+    <div id="accessKeyInput" class="form-section">
+      <label for="accessKeyInput">Sysdig Access Key (Required)</label>
+      <input type="text" id="accessKey" placeholder="Enter Sysdig Access Key" required>
+    </div>
+
+    <!--     <div id="regionInput" class="form-section">
+      <label for="regionInput">Sysdig Region</label>
+      <input type="text" id="region" placeholder="Enter Sysdig Region">
+    </div> -->
+    <div id="regionInput" class="form-section">
+      <label for="regionInput">Sysdig Region (Required)</label>
+      <select id="regionSelect" onchange="handleRegionChange()" required>
+        <option value="us2">us2</option>
+        <option value="us4">us4</option>
+        <option value="eu1">eu1</option>
+        <option value="au1">au1</option>
+        <option value="custom">Custom (For On-Prem)</option>
+      </select>
+      <input type="text" id="customCollectorUrl" placeholder="Enter Collector URL" style="display: none;">
+      <input type="text" id="customCollectorPort" placeholder="Enter Collector Port" style="display: none;">
+    </div>
+
+    <div id="clusterNameInput" class="form-section">
+      <label for="clusterNameInput">Cluster Name (Required)</label>
+      <input type="text" id="clusterName" placeholder="Enter Cluster Name" required>
+    </div>
+
+    <div id="clusterTagsInput" class="form-section">
+      <label for="clusterTagsInput">Cluster Tags (Required)</label>
+      <input type="text" id="clusterTags" placeholder="Enter Cluster Tags" required>
+    </div>
+
+    <div class="form-section">
+      <label>
+        <input type="checkbox" id="proxyCheckbox" onchange="toggleProxyInputs('proxyCheckbox', 'proxyInput')">
+        Proxy Required
+      </label>
+      <div id="proxyInput" class="form-section"></div>
+    </div>
+
+    <div class="form-section">
+      <label>
+        <input type="checkbox" id="registryCheckbox"
+          onchange="toggleRegistryInputs('registryCheckbox', 'registryInput')">
+        Internal Registry Required
+      </label>
+      <div id="registryInput" class="form-section"></div>
+    </div>
+
+    <!--     <div class="form-section">
+      <label>
+        <input type="checkbox" id="registryCheckbox" onchange="toggleInput('registryCheckbox', 'registryInput')">
+        Internal Registry Required
+      </label>
+      <div id="registryInput" class="input-wrapper">
+        <input type="text" id="registryDetails" placeholder="Enter Registry Details">
+      </div>
+    </div> -->
+
+    <div class="form-section">
+      <label>
+        <input type="checkbox" id="priorityCheckbox" onchange="toggleInput('priorityCheckbox', 'priorityInput')">
+        Priority Class Required
+      </label>
+      <div id="priorityInput" class="input-wrapper">
+        <input type="text" id="priorityDetails" placeholder="Enter Priority Class Details">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <button onclick="displayOutput()">Submit</button>
+    </div>
+
+    <div id="output"></div>
+  </div>
+</div>  
+  <script src="scripts/script.js"></script>
+</body>
+
+</html>

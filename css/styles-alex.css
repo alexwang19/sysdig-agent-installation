@@ -1,0 +1,205 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  margin-top: 80px; /* Add top margin to create space for the header */
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.input-wrapper {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.dynamic-input-wrapper {
+  margin-bottom: 10px;
+}
+
+#output {
+  margin-top: 20px;
+  background-color: #f2f2f2;
+  padding: 5px;
+}
+
+input[type="text"],
+button {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button#generateInstallCmdBtn {
+  background-color: #ffe24d;
+  color: black;
+  cursor: pointer;
+}
+
+button#generateInstallCmdBtn:hover {
+  background-color: #F4CD00;
+}
+
+.form-container {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.form-section {
+margin-top: 20px;
+}
+
+.form-section button {
+padding: 8px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 4px;
+width: 100%;
+box-sizing: border-box;
+margin-bottom: 10px;
+}
+
+.form-section button {
+background-color: #f2f2f2;
+color: #333;
+border-color: #333;
+}
+
+.form-section button:hover {
+background-color: #333;
+color: #f2f2f2;
+cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.dropdown-select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px; /* Updated width for better visibility */
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: white;
+}
+
+.dropdown-select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #f9f9f9;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  display: none;
+  z-index: 1;
+}
+
+.dropdown-option {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  background-color: #e5e5e5;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+select:required:invalid {
+  color: gray;
+}
+
+option[value=""] {
+  display: none;
+}
+
+/* header {
+  background-color: #253746;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+} */
+
+header {
+  background-color: #253746;
+  padding: 20px;
+  width: 100%;
+  position: fixed; /* Position the header at the top of the viewport */
+  top: 0; /* Align the header to the top of the viewport */
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 30px;
+  margin-left: 26px;
+}
+
+/* Your CSS styles here */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-icon {
+  color: #007BFF; /* Customize the color of the tooltip icon */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #007BFF; /* Customize the background color of the tooltip */
+  color: #fff; /* Customize the text color of the tooltip */
+  text-align: center;
+  border-radius: 4px;
+  padding: 8px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+}
