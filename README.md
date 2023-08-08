@@ -14,7 +14,7 @@
 
 ### Project can be forked from:
 
-[Git repo](https://github.com/alexwang19/sysdig-agent-installation)
+[Git repo](https://github.com/dtaracks/sysdig-agent-installation)
 
 ### Version Requirements
 * kubectl +/-1 version between Client and Server
