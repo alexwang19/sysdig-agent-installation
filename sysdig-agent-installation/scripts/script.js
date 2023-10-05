@@ -79,7 +79,7 @@ function toggleProxyInputs(checkboxId, inputsContainerId) {
 
     inputsContainer.appendChild(createTextInput('Proxy Host', 'proxy_host', true, 'replacewithyourproxy.com'));
     inputsContainer.appendChild(createTextInput('Proxy Port', 'proxy_port', true, '1234'));
-    inputsContainer.appendChild(createTextInput('No Proxy List(Comma delimited)', 'no_proxy_list', true, 'CLUSTER_IP\\,replacewithyournoproxyhost.com\\,1.2.3.4'));
+    inputsContainer.appendChild(createTextInput('No Proxy List(Comma delimited)', 'no_proxy_list', true, 'INCLUDE_CLUSTER_IP,replacewithyournoproxyhost.com,1.2.3.4'));
   } else {
     // Clear inputs when unchecked
     inputsContainer.innerHTML = '';
@@ -206,7 +206,16 @@ function setHelmCommandGlobalConfigs(params) {
   if (params.proxyCheckbox.checked) {
     helmCommandGlobalConfigs += "<br>&nbsp&nbsp; --set global.proxy.httpProxy=http://" + params.proxyInputs[0].value + ":" + params.proxyInputs[1].value + " \\";
     helmCommandGlobalConfigs += "<br>&nbsp&nbsp; --set global.proxy.httpsProxy=http://" + params.proxyInputs[0].value + ":" + params.proxyInputs[1].value + " \\";
-    helmCommandGlobalConfigs += "<br>&nbsp&nbsp; --set global.proxy.noProxy=" + params.proxyInputs[2].value + " \\";
+    let escapedNoProxyList = "";
+    const noProxyList = params.proxyInputs[2].value.split(',');
+    noProxyList.forEach(function (noProxy, index) {
+      if (index === noProxyList.length - 1) {
+        escapedNoProxyList += noProxy;
+      } else {
+        escapedNoProxyList += noProxy + "\\,";
+      }
+    });
+    helmCommandGlobalConfigs += "<br>&nbsp&nbsp; --set global.proxy.noProxy=" + escapedNoProxyList + " \\";
   }
 
   return helmCommandGlobalConfigs
