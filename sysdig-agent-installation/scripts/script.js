@@ -53,7 +53,7 @@ function toggleRegistryInputs(checkboxId, inputsContainerId) {
   const inputsContainer = document.getElementById(inputsContainerId);
 
   if (checkbox.checked) {
-    const registry_fields = ["Internal Registry", "Internal Registry Pull Secret", "Internal Sysdig Agent Image", "Sysdig Agent Tag", "Internal Sysdig Runtime Scanner Image", "Sysdig Runtime Scanner Tag"];
+    const registry_fields = ["Internal Registry", "Internal Registry Pull Secret", "Internal Sysdig Agent Image", "Internal Sysdig Runtime Scanner Image", "Sysdig Agent Tag", "Sysdig Runtime Scanner Tag"];
     const registry_placeholders = ["quay.io", "", "sysdig/agent", "sysdig/vuln-runtime-scanner", params.agentTagsSelect.value, params.runtimeScannerTagsSelect.value];
     // Clear existing inputs
     inputsContainer.innerHTML = '';
