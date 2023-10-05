@@ -77,9 +77,9 @@ function toggleProxyInputs(checkboxId, inputsContainerId) {
     // Clear existing inputs
     inputsContainer.innerHTML = '';
 
-    inputsContainer.appendChild(createTextInput('Proxy Host', 'proxy_host', true, 'myproxyhost.com'));
-    inputsContainer.appendChild(createTextInput('Proxy Port', 'proxy_port', true, '8080'));
-    inputsContainer.appendChild(createTextInput('No Proxy List(Comma delimited)', 'no_proxy_list', true, '127.0.0.1\\,norpxoyhost.com\\,1.2.3.4'));
+    inputsContainer.appendChild(createTextInput('Proxy Host', 'proxy_host', true, 'replacewithyourproxy.com'));
+    inputsContainer.appendChild(createTextInput('Proxy Port', 'proxy_port', true, '1234'));
+    inputsContainer.appendChild(createTextInput('No Proxy List(Comma delimited)', 'no_proxy_list', true, 'CLUSTER_IP\\,replacewithyournoproxyhost.com\\,1.2.3.4'));
   } else {
     // Clear inputs when unchecked
     inputsContainer.innerHTML = '';
