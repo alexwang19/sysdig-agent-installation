@@ -433,7 +433,7 @@ function setNodeAnalyzerConfigs(params) {
 
   if (params.registryCheckbox.checked) {
     nodeAnalyzerConfigs.nodeAnalyzer.nodeAnalyzer.runtimeScanner.image = {
-      repository: params.registryInputs[0].value + "/" + params.registryInputs[4].value,
+      repository: params.registryInputs[0].value + "/" + params.registryInputs[3].value,
       tag: params.registryInputs[5].value,
     }
     if (params.registryInputs[1].value != "") {
