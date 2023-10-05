@@ -1,0 +1,383 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 40px 0;
+  height: 100%;
+  /* Add top margin to create space for the header */
+  background-color: #09090b;
+  background: rgb(23, 0, 75);
+  background: radial-gradient(circle, rgba(23, 0, 75, 1) 0%, rgba(63, 9, 121, 1) 22%, rgba(2, 0, 36, 1) 93%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #f9fafb;
+}
+
+h4 {
+  text-align: center;
+  color: #f9fafb;
+}
+
+a {
+  color: #2dd4bf;
+}
+
+#kubectlCommandText {
+  color: #cccccc;
+  text-wrap: wrap;
+  font-family: "PT Mono";
+  background-color: #333333;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #f3f4f6;
+}
+
+.input-wrapper {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.dynamic-input-wrapper {
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  background-color: transparent;
+  border: 2px solid #1f2937;
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  color: #f9fafb;
+  transition: border-color 0.2s ease-in-out;
+
+
+&:focus {
+   outline: none;
+   border-color: #14b8a6;
+ }
+}
+
+::placeholder {
+  color: #a1a1aa;
+}
+
+button {
+  padding: 9px 24px;
+  font-size: 16px;
+  border: 1px solid #115e59;
+  border-radius: 6px;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  color: #f8fffd;
+  background-color: #14b8a6;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+
+&:hover {
+   background-color: #2dd4bf;
+ }
+}
+
+
+button.big {
+  padding: 14px 28px;
+}
+
+button.secondary {
+  background-color: transparent;
+  border: 1px solid #14b8a6;
+
+&:hover {
+   background-color: #2dd4bf;
+ }
+}
+
+button.danger {
+  border: 1px solid #f87171;
+  color: #f87171;
+&:hover {
+   background-color: #ef4444;
+   color: #fef2f2;
+ }
+}
+
+.flow-content {
+  display: flex;
+  flex-direction: row;
+}
+.input-section {
+  border-radius: 16px;
+  background-color: #111827;
+  padding: 24px;
+  border: 1px solid #374151;
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 50%;
+}
+
+.output-section {
+  margin-top: 20px;
+  margin-left: 100px;
+  flex-grow: 1;
+  width: 50%;
+}
+
+#install-command {
+  background-color: #f2f2f2;
+  padding: 5px;
+  border: 1px solid #000000;
+  font-family: "PT Mono";
+}
+
+#install-command-static-values{
+  background-color: #f2f2f2;
+  padding: 5px;
+  border: 1px solid #000000;
+  font-family: "PT Mono";
+}
+
+#values-yaml {
+  background-color: #f2f2f2;
+  padding: 5px;
+  border: 1px solid #000000;
+  margin-bottom: 20px;
+  font-family: "PT Mono";
+  white-space:pre
+}
+
+#helm-commands {
+  background-color: #f2f2f2;
+    padding: 5px;
+    border: 1px solid #000000;
+    margin-bottom: 20px;
+    font-family: "PT Mono";
+    white-space: pre
+}
+
+input[type="text"],
+button {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-container {
+  margin: 0 100px 0 100px;
+  width: 100%;
+}
+
+.form-section {
+margin-top: 20px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.dropdown-select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px; /* Updated width for better visibility */
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: white;
+}
+
+.dropdown-select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #f9f9f9;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  display: none;
+  z-index: 1;
+}
+
+.dropdown-option {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  background-color: #e5e5e5;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #4b5563;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #1f2937;
+  color: #f9fafb;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
+
+&:focus {
+   border-color: #14b8a6;
+   outline: none;
+ }
+}
+
+select:required:invalid {
+  color: gray;
+}
+
+option[value=""] {
+  display: none;
+}
+
+/* header {
+  background-color: #253746;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+} */
+
+header {
+  backdrop-filter: blur(10px);
+  background-color: rgba(81, 0, 156, 0.5);
+  padding: 12px;
+  width: 100%;
+  position: fixed;
+  /* Position the header at the top of the viewport */
+  top: 0;
+  /* Align the header to the top of the viewport */
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  height: 44px;
+}
+
+/* Your CSS styles here */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-icon {
+  color: #007BFF; /* Customize the color of the tooltip icon */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #007BFF; /* Customize the background color of the tooltip */
+  color: #fff; /* Customize the text color of the tooltip */
+  text-align: center;
+  border-radius: 4px;
+  padding: 8px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+}
+
+.tag-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tag-key {
+  flex: 1 2 auto;
+}
+
+.tag-value {
+  flex: 1 1 auto;
+  margin: 0 0 0 10px;
+}
+
+.tag-wrapper button {
+  width: fit-content;
+  margin: 0 0 0 10px;
+}
+
+.tabs-container {
+  display: flex;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab-button:hover {
+  background-color: #ddd;
+}
+
+.tab-content {
+  display: none;
+  background-color: #fff;
+}
+
+.active-tab {
+  border-bottom: 2px solid black;
+  /* Add underline style to active tab */
+}
+
+#clusterName {
+  background-color: #333333;
+  color: #cccccc;
+}
+
+.hidden {
+  display: none;
+}
+
+.not-hidden {
+  display: block;
+}

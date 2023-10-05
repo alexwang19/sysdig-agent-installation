@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Configuration Options</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <script src="node_modules/js-yaml/dist/js-yaml.js"></script>
+  <div class="form-container">
+    <header>
+      <div class="logo">
+        <img src="images/sysdig-logo-2.png" alt="Sysdig Logo">
+      </div>
+    </header>
+
+    <br>
+    <h1>Sysdig Agent Installation</h1>
+    <h4>START <a target="_blank"
+        href="https://github.com/draios/hack-23/blob/main/projects/Krakenizer/sysdig-agent-installation/README.md">HERE</a> and fill in required
+      fields below to generate install commands.</h4>
+
+  <div class="flow-content">
+    <div class="input-section">
+        <div id="businessUnitInput" class="form-section">
+          <label for="businessUnitInput">Business Unit (Required)</label>
+          <input type="text" name="businessUnitID" id="businessUnit" placeholder="Enter Business Unit/Application Name" oninput="updateOutput()" required>
+        </div>
+        <div id="platformInput" class="form-section">
+          <label for="platformInput">Platform (Required)</label>
+          <select name="platformID" onchange="updateOutput()" id="platformSelect" required>
+            <option disabled selected value> -- select an option -- </option>
+            <option value="eks">Amazon Elastic Kubernetes Service (EKS)</option>
+            <option value="gke">Google Kubernetes Engine (GKE)</option>
+            <option value="ocp">Red Hat OpenShift Container Platform (OCP)</option>
+            <option value="oss-k8s">OSS Kubernetes</option>
+          </select>
+        </div>
+        <div id="environmentInput" class="form-section">
+          <label for="environmentInput">Environment (Required)</label>
+          <select name="environmentID" onchange="updateOutput()" id="environmentSelect" required>
+            <option disabled selected value> -- select an option -- </option>
+            <option value="test">test</option>
+            <option value="dev">dev</option>
+            <option value="qa">qa</option>
+            <option value="stg">stg</option>
+            <option value="preprod">preprod</option>
+            <option value="prod">prod</option>
+          </select>
+        </div>
+        <div id="vastInput" class="form-section">
+          <label for="vastInput">VASTID (Required)</label>
+          <input type="text" name="vastID" id="vast" placeholder="Enter VAST ID" oninput="updateOutput()" required>
+        </div>
+        
+        <div id="vsadInput" class="form-section">
+          <label for="vsadInput">VSADID (Required)</label>
+          <input type="text" name="vsadID" id="vsad" placeholder="Enter VSAD ID" oninput="updateOutput()" required>
+        </div>
+        <div id="namespaceInput" class="form-section">
+          <label for="namespaceInput">Kubernetes Namespace (Required)</label>
+          <input type="text" id="namespace" value="kube-system" placeholder="Enter k8s Namespace" oninput="updateOutput()" required>
+        </div>
+
+        <div id="accessKeyInput" class="form-section">
+          <label for="accessKeyInput">Sysdig Access Key (Required)</label>
+          <input type="text" id="accessKey" value="CHANGE_ME" placeholder="Enter Sysdig Access Key" oninput="updateOutput()" required>
+        </div>
+
+        <div id="agentTagsInput" class="form-section">
+          <label for="agentTagsInput">Sysdig Agent Version</label>
+          <select name="agentTagsID" onchange="updateOutput()" id="agentTags" required>
+          </select>
+        </div>
+        
+        <div id="runtimeScannerTagsInput" class="form-section">
+          <label for="runtimeScannerTagsInput">Sysdig Vuln Runtime Scanner Version</label>
+          <select name="runtimeScannerID" onchange="updateOutput()" id="runtimeScannerTags" required>
+          </select>
+        </div>
+
+        <!--     <div id="regionInput" class="form-section">
+          <label for="regionInput">Sysdig Region</label>
+          <input type="text" id="region" placeholder="Enter Sysdig Region">
+        </div> -->
+        <!-- <div id="regionInput" class="form-section">
+          <label for="regionInput">Sysdig Region (Required)</label>
+          <select id="regionSelect" onchange="handleRegionChange()" required>
+            <option value="us2">us2</option>
+            <option value="us4">us4</option>
+            <option value="eu1">eu1</option>
+            <option value="au1">au1</option>
+            <option value="custom">Custom (For On-Prem)</option>
+          </select>
+          <input type="text" id="customCollectorUrl" placeholder="Enter Collector URL" oninput="updateOutput()" style="display: none;">
+          <input type="text" id="customCollectorPort" placeholder="Enter Collector Port" oninput="updateOutput()" style="display: none;">
+        </div> -->
+
+        <!-- <div id="clusterNameInput" class="form-section">
+          <label for="clusterNameInput">Sysdig Cluster Alias (Required)</label>
+          <input type="text" class="non-editable-input" id="clusterName" value="sysdig-demo" oninput="autoPopulateClusterName()" placeholder="auto generated" disabled required>
+        </div> -->
+
+            <!-- <div id="clusterNameInput" class="form-section">
+              <label for="clusterNameInput">Sysdig Alias (Alias Used in Sysdig UI)</label>
+              <input type="text" class="non-editable-input" name="clusterNameID" id="clusterName" placeholder="Auto-Generated"
+                oninput="autoPopulateClusterName()" disabled>
+            </div> -->
+
+        <!-- <div id="clusterTagsInput" class="form-section">
+          <label>Cluster Tags</label>
+          <div id="tagLines"></div>
+          <button class="secondary" id="clusterTagsButton" onclick="addTagLine()">Add tag</button>
+        </div> -->
+
+        <div id="imageSizeInput" class="form-section">
+          <label for="imageSizeInput">Find Largest Image Size Running In Your Cluster (Bytes)</label>
+          <p id="kubectlCommandText">
+            kubectl get nodes -o json | jq -r '.items[].status.images[] | .sizeBytes' | sort -nr | head -1
+          </p>
+          <input type="text" name="imageSizeID" id="imageSize" oninput="updateOutput()" placeholder="ex: 3147483648" required>
+        </div>
+
+        <!-- <div id="profileInput" class="form-section">
+          <label for="profileInput">Agent Profile (Required)</label>
+          <select id="profileSelect" onchange="updateOutput()" required>
+            <option value="Platform">Platform</option>
+            <option value="Monitor-only">Monitor-only</option>
+            <option value="Secure-only">Secure-only</option>
+            <option value="Secure light">Secure light</option>
+          </select>
+        </div> -->
+
+        <!-- <div id="featureInputs" class="form-section">
+          <label for="featureInputs">Select Enabled Features</label>
+
+          <label>
+            <input type="checkbox" id="nodeAnalyzerCheckbox" onchange="toggleNodeAnalyzerInputs('nodeAnalyzerCheckbox', 'nodeAnalyzerInput')">
+            Install Node Analyzer
+          </label>
+          <div id="nodeAnalyzerInput"></div>
+
+          <label>
+            <input type="checkbox" id="kspmCheckbox" onchange="toggleKspmInputs('kspmCheckbox', 'kspmInput')">
+            Install KSPM
+          </label>
+          <div id="kspmInput"></div>
+
+          <label>
+            <input type="checkbox" id="admissionControllerCheckbox" onchange="toggleAdmissionControllerInputs('admissionControllerCheckbox', 'admissionControllerInput')">
+            Install Admission Controller
+          </label>
+          <div id="admissionControllerInput"></div>
+
+          <label>
+            <input type="checkbox" id="rapidResponseCheckbox" onchange="toggleRapidResponseInputs('rapidResponseCheckbox', 'rapidResponseInput')">
+            Install Rapid Response
+          </label>
+          <div id="rapidResponseInput"></div>
+        </div> -->
+
+        <div class="form-section">
+          <!-- <label>Resource Limits</label> -->
+                <!-- <div id="agentMemoryInput" class="form-section">
+                  <label for="agentMemoryInput">
+                    <h5>Agent Memory Limit</h5>
+                  </label>
+                  <input type="text" name="agentMemoryInputID" id="agentMemory" oninput="updateOutput()" placeholder="ex: 1024" required>
+                </div> -->
+          <!-- <div id="imageSizeInput" class="form-section">
+            <label for="imageSizeInput">
+              <h5>Runtime Scanner Max Image Size</h5>
+            </label>
+            <p id="kubectlCommandText">
+kubectl get nodes -o json | jq -r '.items[].status.images[] | .sizeBytes' | sort -nr | head -1
+            </p>
+            <input type="text" name="imageSizeID" id="imageSize" oninput="updateOutput()" placeholder="ex: 3147483648" required>
+          </div> -->
+        </div>
+        <div class="form-section">
+          <label>Advanced Configuration</label>
+
+          <label>
+            <input type="checkbox" id="proxyCheckbox" onchange="toggleProxyInputs('proxyCheckbox', 'proxyInput')">
+            Proxy Required
+          </label>
+          <div id="proxyInput" class="form-section"></div>
+
+          <label>
+            <input type="checkbox" id="registryCheckbox"
+              onchange="toggleRegistryInputs('registryCheckbox', 'registryInput')">
+            Internal Registry Required
+          </label>
+          <div id="registryInput" class="form-section"></div>
+
+        <!--     <div class="form-section">
+          <label>
+            <input type="checkbox" id="registryCheckbox" onchange="toggleInput('registryCheckbox', 'registryInput')">
+            Internal Registry Required
+          </label>
+          <div id="registryInput" class="input-wrapper">
+            <input type="text" id="registryDetails" placeholder="Enter Registry Details">
+          </div>
+        </div> -->
+
+          <!-- <label>
+            <input type="checkbox" id="priorityCheckbox" onchange="toggleInput('priorityCheckbox', 'priorityInput')">
+            Priority Class Required
+          </label>
+          <div id="priorityInput" class="input-wrapper">
+            <input type="text" id="priorityDetails" oninput="updateOutput()" placeholder="Enter Priority Class ex. system-node-critical">
+          </div> -->
+        </div>
+    </div>
+    <div class="output-section">
+      
+
+      <div class="tabs-container">
+        <div class="tab-button" onclick="showTab('helm-commands')" id="default-tab">Using Helm</div>
+        <div class="tab-button" onclick="showTab('values-yaml')">Using values.yaml</div>
+      </div>
+      <div id="helm-commands" class="tab-content">Please fill in all required fields.</div>
+      <div id="values-yaml" class="tab-content">Please fill in all required fields.</div>
+      <br>
+      <div class="hidden" id="complete-values">
+        <!-- <label>Download the above content and save it to a file named values.yaml:</label> -->
+        <label>Run following commands for installation</label>
+        <div id="install-command">Please fill in all required fields.</div>
+        <div class="form-section">
+          <button onclick="downloadYaml()">Download</button>
+        </div>
+      </div>
+      <div id="static-values">
+        <label>Follow below instructions for installation</label>
+        <div id="install-command-static-values">Please fill in all required fields.</div>
+        <div class="form-section">
+          <button onclick="downloadStaticYamlFile()">Download</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>  
+  <script src="scripts/script.js"></script>
+  <script>
+        document.getElementById('helm-commands').style.display = 'block';
+        document.querySelector('[onclick="showTab(\'helm-commands\')"]').classList.add("active-tab")
+  </script>
+</body>
+
+</html>
