@@ -38,6 +38,16 @@ a {
   border: 1px solid #cccccc;
 }
 
+.kubectlCommandText {
+  color: #cccccc;
+  text-wrap: wrap;
+  font-family: "PT Mono";
+  background-color: #333333;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+
 label {
   display: block;
   margin-bottom: 10px;
@@ -151,6 +161,13 @@ button.danger {
   padding: 5px;
   border: 1px solid #000000;
   font-family: "PT Mono";
+}
+
+#using-manifests {
+    background-color: #f2f2f2;
+      padding: 5px;
+      border: 1px solid #000000;
+      font-family: "PT Mono";
 }
 
 #values-yaml {

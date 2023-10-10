@@ -204,21 +204,22 @@ kubectl get nodes -o json | jq -r '.items[].status.images[] | .sizeBytes' | sort
           </div>
         </div> -->
 
-          <!-- <label>
+          <label>
             <input type="checkbox" id="priorityCheckbox" onchange="toggleInput('priorityCheckbox', 'priorityInput')">
             Priority Class Required
           </label>
           <div id="priorityInput" class="input-wrapper">
-            <input type="text" id="priorityDetails" oninput="updateOutput()" placeholder="Enter Priority Class ex. system-node-critical">
-          </div> -->
+            <input type="text" id="priorityDetails" value="system-node-critical" oninput="updateOutput()" placeholder="Enter Priority Class ex. system-node-critical">
+          </div>
         </div>
     </div>
     <div class="output-section">
       
 
       <div class="tabs-container">
-        <div class="tab-button" onclick="showTab('helm-commands')" id="default-tab">Using Helm</div>
-        <div class="tab-button" onclick="showTab('values-yaml')">Using values.yaml</div>
+        <div class="tab-button" onclick="showTab('helm-commands')" id="default-tab">Using Static Values</div>
+        <div class="tab-button" onclick="showTab('values-yaml')">Using Complete values.yaml</div>
+        <div class="tab-button" onclick="showTab('using-manifests')">Using manifests</div>
       </div>
       <div id="helm-commands" class="tab-content">Please fill in all required fields.</div>
       <div id="values-yaml" class="tab-content">Please fill in all required fields.</div>
@@ -231,12 +232,16 @@ kubectl get nodes -o json | jq -r '.items[].status.images[] | .sizeBytes' | sort
           <button onclick="downloadYaml()">Download</button>
         </div>
       </div>
+      <div class="hidden" id="manifest-values">
+        <label>Follow below instructions to generate Sysdig manifests</label>
+        <div id="using-manifests">Please fill in all required fields.</div>
+      </div>
       <div id="static-values">
         <label>Follow below instructions for installation</label>
         <div id="install-command-static-values">Please fill in all required fields.</div>
-        <div class="form-section">
+        <!-- <div class="form-section">
           <button onclick="downloadStaticYamlFile()">Download</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

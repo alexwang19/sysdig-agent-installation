@@ -139,6 +139,7 @@ function createTextInput(labelText, inputName, required, value) {
 
   const label = document.createElement('label');
   label.textContent = labelText;
+  
 
   const input = document.createElement('input');
   input.type = 'text';
@@ -148,6 +149,12 @@ function createTextInput(labelText, inputName, required, value) {
   input.oninput = updateOutput;
 
   inputWrapper.appendChild(label);
+  if (inputName == "no_proxy_list") {
+    const clusterIPCommand = document.createElement("p");
+    clusterIPCommand.classList.add("kubectlCommandText");
+    clusterIPCommand.textContent = "kubectl get service kubernetes -o jsonpath='{.spec.clusterIP}'; echo";
+    inputWrapper.appendChild(clusterIPCommand);
+  }
   inputWrapper.appendChild(input);
 
   return inputWrapper
@@ -324,9 +331,9 @@ function setAgentConfigs(params) {
     }
   }
 
-  // if (params.priorityCheckbox.checked) {
-  //   agentConfigs.agent.priorityClassName = params.priorityInput
-  // }
+  if (params.priorityCheckbox.checked) {
+    agentConfigs.agent.priorityClassName = params.priorityInput
+  }
 
   // if (params.agentProfileInput === "Monitor-only") {
   //   agentConfigs.agent.monitor = { enabled: true }
@@ -379,10 +386,9 @@ function setHelmCommandAgentConfigs(params) {
     helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.image.tag=" + params.runtimeScannerTagsSelect.value + " \\";
   }
 
-  // if (params.priorityCheckbox.checked) {
-    
-  // }
-  // updateOutput()
+  if (params.priorityCheckbox.checked) {
+    helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set agent.priorityClassName=" + params.priorityInput + " \\";
+  }
 
   return helmCommandAgentConfigs
 }
@@ -669,6 +675,10 @@ function updateOutput() {
   let yaml = generateYaml()
   let installCommand = generateInstallCommand()
   let installCommandForStaticValues = generateInstallCommandForStaticValues()
+  let installCommandForManifests = generateInstallCommandForManifests()
+
+  const manifestsInstallOutputDiv = document.getElementById('using-manifests');
+  manifestsInstallOutputDiv.innerHTML = installCommandForManifests;
 
   const helmCommandLineInstallOutputDiv = document.getElementById('helm-commands');
   helmCommandLineInstallOutputDiv.innerHTML = helmCommandLineInstall;
@@ -791,8 +801,8 @@ function generateUserInputParamObject() {
     proxyInputs: document.getElementById('proxyInput').getElementsByTagName('input'),
     registryCheckbox: document.getElementById('registryCheckbox'),
     registryInputs: document.getElementById('registryInput').getElementsByTagName('input'),
-    // priorityCheckbox: document.getElementById('priorityCheckbox'),
-    // priorityInput: document.querySelector('#priorityInput input').value,
+    priorityCheckbox: document.getElementById('priorityCheckbox'),
+    priorityInput: document.querySelector('#priorityInput input').value,
     // nodeAnalyzerCheckbox: document.getElementById('nodeAnalyzerCheckbox'),
     // admissionControllerCheckbox: document.getElementById('admissionControllerCheckbox'),
     // kspmCheckbox: document.getElementById('kspmCheckbox'),
@@ -872,6 +882,27 @@ function generateInstallCommand() {
         href="https://github.com/alexwang19/alexwang19.github.io/blob/main/docs/installation_docs.md">HERE</a></strong><br>Install Commands<br>helm repo add sysdig https://charts.sysdig.com --force-update <br><br> helm upgrade -i --force sysdig-agent --namespace ${namespace} --create-namespace -f values.yaml sysdig/sysdig-deploy`
 }
 
+function generateInstallCommandForManifests() {
+  let namespace = document.querySelector('#namespaceInput input').value;
+
+  // if (!namespace) {
+  //   return 'Please fill in all required fields.';
+  // }
+
+  return `<strong>REVIEW PRE-REQ DOCS <a target="_blank"
+        href="https://github.com/alexwang19/alexwang19.github.io/blob/main/docs/installation_docs.md">HERE</a></strong>
+        <br>Generate Sysdig Manifests
+        <br> 1. Fill out "Using values.yaml" tab and download resulting values.yaml file
+        <br> 2. Add sysdig helm chart
+        <br>&nbsp; - helm repo add sysdig https://charts.sysdig.com --force-update
+        <br> 3. Download script to generate manifest
+        <br>&nbsp; - wget https://raw.githubusercontent.com/kadkins-sysdig/sysdig-tools/main/gen-sysdig-manifests.sh
+        <br> 4. Make script executable
+        <br>&nbsp; - chmod +x gen-sysdig-manifests.sh
+        <br> 5. Execute script to generate manifests. See example below:
+        <br>&nbsp; - ./gen-sysdig-manifests.sh -f values.yaml -n ${namespace}`
+}
+
 function downloadYaml() {
   const content = generateYaml();
   // Create a Blob with the YAML content
@@ -896,13 +927,20 @@ function showTab(tabId) {
   }
   const completeValues = document.getElementById('static-values');
   const staticValues = document.getElementById('complete-values');
+  const manifestValues = document.getElementById('manifest-values');
   if (tabId == "values-yaml") {
     completeValues.classList.add('hidden');
     staticValues.classList.remove('hidden');
+    manifestValues.classList.add('hidden');
   }
   else if (tabId == "helm-commands") {
     staticValues.classList.add('hidden');
     completeValues.classList.remove('hidden');
+  }
+  else if (tabId == "using-manifests") {
+    completeValues.classList.add('hidden');
+    staticValues.classList.add('hidden');
+    manifestValues.classList.remove('hidden');
   }
   document.querySelector('[onclick="showTab(\'' + tabId + '\')"]').classList.add("active-tab");
 }
