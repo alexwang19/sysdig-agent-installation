@@ -892,7 +892,7 @@ function generateInstallCommandForManifests() {
   return `<strong>REVIEW PRE-REQ DOCS <a target="_blank"
         href="https://github.com/alexwang19/alexwang19.github.io/blob/main/docs/installation_docs.md">HERE</a></strong>
         <br>Generate Sysdig Manifests
-        <br> 1. Fill out "Using values.yaml" tab and download resulting values.yaml file
+        <br> 1. Fill out "Using Complete values.yaml" tab and download resulting values.yaml file
         <br> 2. Add sysdig helm chart
         <br>&nbsp; - helm repo add sysdig https://charts.sysdig.com --force-update
         <br> 3. Download script to generate manifest
