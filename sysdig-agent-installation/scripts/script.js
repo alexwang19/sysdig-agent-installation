@@ -393,6 +393,30 @@ function setHelmCommandAgentConfigs(params) {
   return helmCommandAgentConfigs
 }
 
+function setHelmCommandNodeAnalyzerRuntimeConfigs(params) {
+  let helmCommandNodeAnalyzerRuntimeConfigs = "";
+  let maxImageSize = '2147483648'
+  let ephemeralStorageRequestGigabytes = '3Gi'
+  let ephemeralStorageLimitGigabytes = '6Gi'
+  let memoryLimitGigabytes = '4Gi'
+  if (params.imageSizeInput != null && parseInt(params.imageSizeInput.value) > parseInt(maxImageSize)) {
+    maxImageSize = params.imageSizeInput.value
+    let ephemeralStorageRequestBytes = 1.5 * maxImageSize;
+    ephemeralStorageRequestGigabytes = Math.ceil(convertBytesToGigabytes(ephemeralStorageRequestBytes)) + 'Gi';
+    let ephemeralStorageLimitBytes = 3 * maxImageSize;
+    ephemeralStorageLimitGigabytes = Math.ceil(convertBytesToGigabytes(ephemeralStorageLimitBytes)) + 'Gi';
+    let memoryLimitBytes = 2 * maxImageSize;
+    memoryLimitGigabytes = Math.ceil(convertBytesToGigabytes(memoryLimitBytes)) + 'Gi';
+
+    helmCommandNodeAnalyzerRuntimeConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.settings.maxImageSizeAllowed=" + maxImageSize + "\\";
+    helmCommandNodeAnalyzerRuntimeConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.resources.requests.ephemeral-storage=" + ephemeralStorageRequestGigabytes + "\\";
+    helmCommandNodeAnalyzerRuntimeConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.resources.limits.memory=" + memoryLimitGigabytes + "\\";
+    helmCommandNodeAnalyzerRuntimeConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.resources.limits.ephemeral-storage=" + ephemeralStorageLimitGigabytes + "\\";
+  }
+
+  return helmCommandNodeAnalyzerRuntimeConfigs;
+}
+
 function setNodeAnalyzerConfigs(params) {
   let nodeAnalyzerConfigs = {
     nodeAnalyzer: {
@@ -853,6 +877,7 @@ function generateHelmCommandLineInstall() {
   helmCommands += "<br>&nbsp;&nbsp; --namespace " + params.namespaceInput + " \\";
   helmCommands += setHelmCommandGlobalConfigs(params)
   helmCommands += setHelmCommandAgentConfigs(params)
+  helmCommands += setHelmCommandNodeAnalyzerRuntimeConfigs(params)
   helmCommands += "<br>&nbsp;&nbsp; -f static-configs.yaml \\";
   helmCommands += "<br>sysdig/sysdig-deploy";
   return helmCommands
