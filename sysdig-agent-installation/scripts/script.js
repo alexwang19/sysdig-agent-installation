@@ -310,7 +310,7 @@ function setAgentConfigs(params) {
 
   if (params.registryCheckbox.checked) {
     agentConfigs.agent.image = {
-      repository: params.registryInputs[0].value + "/" + params.registryInputs[2].value,
+      repository: params.registryInputs[2].value,
       tag: params.registryInputs[5].value,
     }
     if (params.registryInputs[1].value != "") {
@@ -370,11 +370,11 @@ function setHelmCommandAgentConfigs(params) {
   } 
 
   if (params.registryCheckbox.checked) {
-    helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set agent.image.tag=" + params.registryInputs[3].value + " \\";
+    helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set agent.image.tag=" + params.registryInputs[4].value + " \\";
     helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set agent.image.registry=" + params.registryInputs[0].value + " \\";
     helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set agent.image.repository=" + params.registryInputs[2].value + " \\";
     helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.image.registry=" + params.registryInputs[0].value + " \\";
-    helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.image.repository=" + params.registryInputs[4].value + " \\";
+    helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.image.repository=" + params.registryInputs[3].value + " \\";
     helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.image.tag=" + params.registryInputs[5].value + " \\";
     if (params.registryInputs[1].value != ""){
       helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set agent.image.pullSecrets=" + params.registryInputs[1].value + " \\";
@@ -448,7 +448,7 @@ function setNodeAnalyzerConfigs(params) {
 
   if (params.registryCheckbox.checked) {
     nodeAnalyzerConfigs.nodeAnalyzer.nodeAnalyzer.runtimeScanner.image = {
-      repository: params.registryInputs[0].value + "/" + params.registryInputs[3].value,
+      repository: params.registryInputs[3].value,
       tag: params.registryInputs[5].value,
     }
     if (params.registryInputs[1].value != "") {
