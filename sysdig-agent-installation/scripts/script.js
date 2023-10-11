@@ -893,13 +893,11 @@ function generateInstallCommandForManifests() {
         href="https://github.com/alexwang19/alexwang19.github.io/blob/main/docs/installation_docs.md">HERE</a></strong>
         <br>Generate Sysdig Manifests
         <br> 1. Fill out "Using Complete values.yaml" tab and download resulting values.yaml file
-        <br> 2. Add sysdig helm chart
-        <br>&nbsp; - helm repo add sysdig https://charts.sysdig.com --force-update
-        <br> 3. Download script to generate manifest
+        <br> 2. Download script to generate manifest
         <br>&nbsp; - wget https://raw.githubusercontent.com/kadkins-sysdig/sysdig-tools/main/gen-sysdig-manifests.sh
-        <br> 4. Make script executable
+        <br> 3. Make script executable
         <br>&nbsp; - chmod +x gen-sysdig-manifests.sh
-        <br> 5. Execute script to generate manifests. See example below:
+        <br> 4. Execute script to generate manifests. See example below:
         <br>&nbsp; - ./gen-sysdig-manifests.sh -f values.yaml -n ${namespace}`
 }
 
