@@ -181,11 +181,11 @@ button.danger {
 
 #helm-commands {
   background-color: #f2f2f2;
-    padding: 5px;
-    border: 1px solid #000000;
-    margin-bottom: 20px;
-    font-family: "PT Mono";
-    white-space: pre
+  padding: 5px;
+  border: 1px solid #000000;
+  margin-bottom: 20px;
+  font-family: "PT Mono";
+  white-space: pre;
 }
 
 input[type="text"],

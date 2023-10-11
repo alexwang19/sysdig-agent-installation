@@ -355,9 +355,9 @@ function setAgentConfigs(params) {
 
 function setHelmCommandAgentConfigs(params) {
   let helmCommandAgentConfigs = "";
-  helmCommandAgentConfigs += "<br>&nbsp&nbsp; --set agent.sysdig.settings.tags=" + "cluster:" + params.businessUnit + "-" + 
+  helmCommandAgentConfigs += "<br>&nbsp&nbsp; --set agent.sysdig.settings.tags=" + "\"cluster:" + params.businessUnit + "-" + 
   params.platform + "-" + params.environment + "-" + params.vastId + "-" + params.vsadId + "\\," +
-   "<br>" + "vz-vsadid:" + params.vsadId +"\\," + "vz-vastid:" + params.vastId + " \\";
+   "vz-vsadid:" + params.vsadId +"\\," + "vz-vastid:" + params.vastId + "\" \\";
   
   if (params.platform === "gke") {
     helmCommandAgentConfigs += "<br>&nbsp;&nbsp; --set agent.ebpf.enabled=true \\";
