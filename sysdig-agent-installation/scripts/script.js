@@ -248,9 +248,9 @@ function setGlobalConfigs(params) {
   //   globalConfigs.global.sysdig.tags = params.clusterTags
   // }
 
-  if (params.registryCheckbox.checked) {
-    globalConfigs.global.imageRegistry = params.registryInputs[0].value ;
-  }
+  // if (params.registryCheckbox.checked) {
+  //   globalConfigs.global.imageRegistry = params.registryInputs[0].value ;
+  // }
 
   if (params.proxyCheckbox.checked) {
     globalConfigs.global.proxy = {
@@ -310,6 +310,7 @@ function setAgentConfigs(params) {
 
   if (params.registryCheckbox.checked) {
     agentConfigs.agent.image = {
+      registry: params.registryInputs[0].value,
       repository: params.registryInputs[2].value,
       tag: params.registryInputs[5].value,
     }
@@ -471,6 +472,9 @@ function setNodeAnalyzerConfigs(params) {
   // }
 
   if (params.registryCheckbox.checked) {
+    nodeAnalyzerConfigs.nodeAnalyzer.image = {
+      registry: params.registryInputs[0].value
+    }
     nodeAnalyzerConfigs.nodeAnalyzer.nodeAnalyzer.runtimeScanner.image = {
       repository: params.registryInputs[3].value,
       tag: params.registryInputs[5].value,
