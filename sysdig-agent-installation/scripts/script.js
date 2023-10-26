@@ -315,7 +315,7 @@ function setAgentConfigs(params) {
     agentConfigs.agent.image = {
       registry: params.registryInputs[0].value,
       repository: params.registryInputs[2].value,
-      tag: params.registryInputs[5].value,
+      tag: params.registryInputs[4].value,
     }
     if (params.registryInputs[1].value != "") {
       agentConfigs.agent.image = {
