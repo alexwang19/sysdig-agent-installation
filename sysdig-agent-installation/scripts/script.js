@@ -222,7 +222,7 @@ function setHelmCommandGlobalConfigs(params) {
         escapedNoProxyList += noProxy + "\\,";
       }
     });
-    helmCommandGlobalConfigs += "<br>&nbsp&nbsp; --set global.proxy.noProxy=" + escapedNoProxyList + " \\";
+    helmCommandGlobalConfigs += "<br>&nbsp&nbsp; --set global.proxy.noProxy=\"" + escapedNoProxyList + "\" \\";
   }
 
   return helmCommandGlobalConfigs
@@ -966,6 +966,7 @@ function showTab(tabId) {
   else if (tabId == "helm-commands") {
     staticValues.classList.add('hidden');
     completeValues.classList.remove('hidden');
+    manifestValues.classList.add('hidden');
   }
   else if (tabId == "using-manifests") {
     completeValues.classList.add('hidden');
@@ -1145,7 +1146,7 @@ function downloadStaticYamlFile() {
     // Create a temporary <a> element to trigger the download
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'static-helm-values.yaml';
+    link.download = 'static-configs.yaml';
     link.click();
   } else {
     console.error('No imported YAML data available.');
