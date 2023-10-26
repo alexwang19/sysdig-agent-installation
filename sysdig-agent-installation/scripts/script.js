@@ -276,6 +276,13 @@ function setAgentConfigs(params) {
       auditLog: {
         enabled: false,
       },
+      sysdig: {
+        settings: {
+          tags: "cluster:" + params.businessUnit + "-" +
+            params.platform + "-" + params.environment + "-" + params.vastId + "-" + params.vsadId + "," +
+            "vz-vsadid:" + params.vsadId + "," + "vz-vastid:" + params.vastId,
+        }
+      }
       // resources: {
       //   requests: {
       //     cpu: '150m',
@@ -298,14 +305,10 @@ function setAgentConfigs(params) {
   // }
 
   if (params.proxyCheckbox.checked) {
-    agentConfigs.agent.sysdig= {
-        settings: {
-          http_proxy: {
-            proxy_host: params.proxyInputs[0].value,
-            proxy_port: params.proxyInputs[1].value,
-        }
+    agentConfigs.agent.sysdig.settings.http_proxy = {
+        proxy_host: params.proxyInputs[0].value,
+        proxy_port: params.proxyInputs[1].value,
       }
-    }
   }
 
   if (params.registryCheckbox.checked) {
