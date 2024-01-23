@@ -417,6 +417,9 @@ function setHelmCommandNodeAnalyzerRuntimeConfigs(params) {
     helmCommandNodeAnalyzerRuntimeConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.resources.limits.memory=" + memoryLimitGigabytes + "\\";
     helmCommandNodeAnalyzerRuntimeConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.resources.limits.ephemeral-storage=" + ephemeralStorageLimitGigabytes + "\\";
   }
+  if (params.platform === "ocp") {
+    helmCommandNodeAnalyzerRuntimeConfigs += "<br>&nbsp;&nbsp; --set nodeAnalyzer.nodeAnalyzer.runtimeScanner.env.SCANNER_RUN_TIMEOUT=3h \\";
+  }
 
   return helmCommandNodeAnalyzerRuntimeConfigs;
 }
@@ -526,10 +529,11 @@ function setNodeAnalyzerConfigsRuntimeScanner(params, nodeAnalyzerConfigs) {
     let memoryLimitBytes = 2 * maxImageSize;
     memoryLimitGigabytes = Math.ceil(convertBytesToGigabytes(memoryLimitBytes)) + 'Gi';
   }
+
   nodeAnalyzerConfigs.nodeAnalyzer.nodeAnalyzer.runtimeScanner = {
     deploy: true,
     settings: {
-      eveEnabled: false,
+      // eveEnabled: false,
       maxImageSizeAllowed: maxImageSize,
       maxFileSizeAllowed: '500000000',
     },
@@ -548,6 +552,12 @@ function setNodeAnalyzerConfigsRuntimeScanner(params, nodeAnalyzerConfigs) {
     },
   }
 
+  if (params.platform === "ocp") {
+    nodeAnalyzerConfigs.nodeAnalyzer.nodeAnalyzer.runtimeScanner.env = {
+      SCANNER_RUN_TIMEOUT: "3h",
+    }
+  }
+  
   return nodeAnalyzerConfigs
 }
 

@@ -25,7 +25,6 @@ nodeAnalyzer:
     runtimeScanner:
       deploy: true
       settings:
-        eveEnabled: false
         maxImageSizeAllowed: "2147483648"
         maxFileSizeAllowed: "500000000"
       eveConnector:
